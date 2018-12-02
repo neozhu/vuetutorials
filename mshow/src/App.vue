@@ -16,13 +16,10 @@
 </template>
 
 <script>
-import mapview from './components/map-view'
+
 
 export default {
   name: 'App',
-  components: {
-    mapview
-  },
   data () {
     return {
       //

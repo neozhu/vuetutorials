@@ -34,7 +34,7 @@ export default {
       let AMap = this.AMap = window.AMap
       AMapUI.loadUI(['misc/PositionPicker'], PositionPicker => {
         let mapConfig = {
-          zoom: 18,
+          zoom: 14,
           cityName: MapCityName
         }
         if (Location) {
@@ -52,7 +52,7 @@ export default {
         var marker = new AMap.Marker({
           icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
           position: [Location.lng, Location.lat],
-          title: '江苏飞力达国际物流股份有限公司'
+          title: '小区全景'
          });
          map.add(marker);
          marker.on('click', function(){

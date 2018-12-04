@@ -4,74 +4,88 @@
 <script>
 import url_1 from "@/assets/01.jpeg";
 import url_2 from "@/assets/02.jpeg";
+
 export default {
   data: function() {
     return {};
   },
   methods: {
     createPannellum: function(tour) {
-      const viewer = pannellum.viewer("panorama", {   
-    "default": {
-        "firstScene": "circle",
-        "author": "昆山市",
-        "sceneFadeDuration": 1000,
-        "autoRotateInactivityDelay":2000,
-        "autoLoad":true
-    },
-    
-    "scenes": {
-        "circle": {
-            "title": "小区全景",
-            "hfov": 110,
-            "pitch": -3,
-            "yaw": 117,
-            "type": "equirectangular",
-            "panorama": url_1,
-            "hotSpots": [
-                {
-                    "pitch": -1.4476622300996986,
-                    "yaw": -70.59580885187263,
-                    "type": "scene",
-                    "text": "往前走",
-                    "sceneId": "house"
-                },
-                {
-            "pitch": 5.4,
-            "yaw": 110.8105838402667,
-            "type": "info",
-            "text": "这里是幼儿园"
-        }
-            ]
+      const viewer = pannellum.viewer("panorama", {
+        default: {
+          firstScene: "circle",
+          author: "昆山市",
+          sceneFadeDuration: 1000,
+          autoRotateInactivityDelay: 2000,
+          autoLoad: true
         },
 
-        "house": {
-            "title": "林荫小道",
-            "hfov": 110,
-            "yaw": 5,
-            "type": "equirectangular",
-            "panorama": url_2,
-            "hotSpots": [
-                {
-                    "pitch": -1.5607644035618153,
-                    "yaw": -123.98631107999095,
-                    "type": "scene",
-                    "text": "回去",
-                    "sceneId": "circle",
-                    "targetYaw": -23,
-                    "targetPitch": 2
-                },
-                {
-                    "pitch": 1.7,
-                    "yaw": 2.0,
-                    "type": "scene",
-                    "text": "这是一颗大槐树",
-                    "targetYaw": -23,
-                    "targetPitch": 2
-                }
+        scenes: {
+          circle: {
+            title: "小区全景",
+            hfov: 100.0,
+            type: "multires",
+            multiRes: {
+              basePath: "/vuetutorials/img/output1",
+              path: "/%l/%s%y_%x",
+              fallbackPath: "/fallback/%s",
+              extension: "jpg",
+              tileResolution: 512,
+              maxLevel: 3,
+              cubeResolution: 1464
+            },
+            hotSpots: [
+              {
+                pitch: -1.4476622300996986,
+                yaw: -70.59580885187263,
+                type: "scene",
+                text: "往前走",
+                sceneId: "house"
+              },
+              {
+                pitch: 5.4,
+                yaw: 110.8105838402667,
+                type: "info",
+                text: "这里是幼儿园"
+              }
             ]
+          },
+
+          house: {
+            title: "林荫小道",
+            hfov: 100,
+            type: "multires",
+            multiRes: {
+                 basePath: "/vuetutorials/img/output2",
+        path: "/%l/%s%y_%x",
+        fallbackPath: "/fallback/%s",
+        extension: "jpg",
+        tileResolution: 512,
+        maxLevel: 3,
+        cubeResolution: 1464
+    },
+            hotSpots: [
+              {
+                pitch: -1.5607644035618153,
+                yaw: -123.98631107999095,
+                type: "scene",
+                text: "回去",
+                sceneId: "circle",
+                targetYaw: -23,
+                targetPitch: 2
+              },
+              {
+                pitch: 1.7,
+                yaw: 2.0,
+                type: "scene",
+                text: "这是一颗大槐树",
+                targetYaw: -23,
+                targetPitch: 2
+              }
+            ]
+          }
         }
-    }
-});
+      });
       viewer.on("mousedown", function(e) {
         console.log("mousedown");
         console.log("Yaw " + viewer.getYaw());
